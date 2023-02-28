@@ -1,2 +1,2 @@
-# til
-today I learned
+# Reinforcement Learning Observations - my blog about RL
+Reinforcement Learning Observations
