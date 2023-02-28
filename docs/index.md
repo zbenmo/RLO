@@ -1,17 +1,8 @@
-# Welcome to MkDocs
+# Reinforcement Learning Observations
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Welcome to my RL related blog.
 
-## Commands
+We'll review reinforcement-learning libraries and concepts, and strive
+to keep track of the state of the art in the RL arena, and to suggest the best engineering practices.
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+We'll talk here about **environments** and about **agents**. We'll make **observations** and we will be **rewarded**!
