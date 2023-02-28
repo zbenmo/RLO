@@ -1,1 +1,10 @@
-site_name: My Docs
+site_name: RLO
+theme:
+  name: material
+  palette:
+    primary: green
+    accent: orange
+  font:
+    text: Ubuntu
+  icon:
+    logo: material/robot-industrial-outline
