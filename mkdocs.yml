@@ -8,5 +8,6 @@ theme:
     text: Ubuntu
   icon:
     logo: material/robot-industrial-outline
+  favicon: images/favicon-32x32.png
 markdown_extensions:
   - footnotes
