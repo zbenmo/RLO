@@ -8,3 +8,5 @@ theme:
     text: Ubuntu
   icon:
     logo: material/robot-industrial-outline
+markdown_extensions:
+  - footnotes
