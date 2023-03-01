@@ -9,24 +9,24 @@
       
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../../reinforcement_learning/">
       
       
-        <link rel="next" href="../Gymnasium/gym/">
+        <link rel="next" href="../../concepts/action_masking/">
       
-      <link rel="icon" href="../images/favicon-32x32.png">
+      <link rel="icon" href="../../images/favicon-32x32.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.15">
     
     
       
-        <title>Reinforcement Learning - RLO</title>
+        <title>Gym / Gymnasium - RLO</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.113286f1.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.113286f1.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
       
       
 
@@ -42,7 +42,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#reinforcement-learning" class="md-skip">
+        <a href="#gym-gymnasium" class="md-skip">
           Skip to content
         </a>
       
@@ -81,7 +81,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="RLO" class="md-header__button md-logo" aria-label="RLO" data-md-component="logo">
+    <a href="../.." title="RLO" class="md-header__button md-logo" aria-label="RLO" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 19h4.6L2.62 8.64C2.23 8 2 7.29 2 6.5a3.999 3.999 0 0 1 7.87-1H14V3c0-1.1.9-2 2-2v2.59L17.59 2H22v2h-3.59L16 6.41v.18L18.41 9H22v2h-4.41L16 9.41V12a2 2 0 0 1-2-2V7.5H9.87c-.1.39-.26.76-.46 1.1l6 10.4H20a2 2 0 0 1 2 2v1H2v-1c0-1.1.9-2 2-2m3.91-9c-.56.32-1.21.5-1.91.5l4.91 8.5h2.19l-5.19-9M6 4.5a2 2 0 0 0-2 2c0 1.11.89 2 2 2 1.11 0 2-.89 2-2a2 2 0 0 0-2-2Z"/></svg>
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Reinforcement Learning
+              Gym / Gymnasium
             
           </span>
         </div>
@@ -167,7 +167,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="RLO" class="md-nav__button md-logo" aria-label="RLO" data-md-component="logo">
+    <a href="../.." title="RLO" class="md-nav__button md-logo" aria-label="RLO" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 19h4.6L2.62 8.64C2.23 8 2 7.29 2 6.5a3.999 3.999 0 0 1 7.87-1H14V3c0-1.1.9-2 2-2v2.59L17.59 2H22v2h-3.59L16 6.41v.18L18.41 9H22v2h-4.41L16 9.41V12a2 2 0 0 1-2-2V7.5H9.87c-.1.39-.26.76-.46 1.1l6 10.4H20a2 2 0 0 1 2 2v1H2v-1c0-1.1.9-2 2-2m3.91-9c-.56.32-1.21.5-1.91.5l4.91 8.5h2.19l-5.19-9M6 4.5a2 2 0 0 0-2 2c0 1.11.89 2 2 2 1.11 0 2-.89 2-2a2 2 0 0 0-2-2Z"/></svg>
@@ -186,7 +186,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         Reinforcement Learning Observations
       </a>
     </li>
@@ -197,6 +197,50 @@
       
       
 
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reinforcement_learning/" class="md-nav__link">
+        Reinforcement Learning
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          Gymnasium
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Gymnasium
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
   
   
     
@@ -211,51 +255,9 @@
       
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Reinforcement Learning
-      </a>
-      
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
-      
-      
-      
-        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-          Gymnasium
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_3">
-          <span class="md-nav__icon md-icon"></span>
-          Gymnasium
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Gymnasium/gym/" class="md-nav__link">
         Gym / Gymnasium
       </a>
+      
     </li>
   
 
@@ -302,7 +304,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../concepts/action_masking/" class="md-nav__link">
+      <a href="../../concepts/action_masking/" class="md-nav__link">
         Action Masking
       </a>
     </li>
@@ -349,27 +351,39 @@
                   
 
 
-<h1 id="reinforcement-learning">Reinforcement Learning</h1>
-<p>We want to build software that automates tasks or acts on our behalf in various situations.
-This is nothing new. We have build software for some time now. We have came up with algorithms and engineering solutions.</p>
-<p>The future lies apparently with <strong>machine learning</strong>. We can build parts of our software systems in new ways. By <strong>training</strong> software from examples.
-So instead of figuring how to do stuff, we communicate to the software what we want, and the software is built automatically from this description.</p>
-<p>For example for teaching software to distinguish between cats and dogs in images we provide examples of cats and of dogs and we use <strong>supervised learning</strong>. This is a machine learning technique with which a <strong>model</strong> slowly picks up the statistical hints from the labeled examples till it can fulfil the task of predicting correctly the labels on unseen examples, and hence we have achieved a software solution that can carry on from now in telling dogs from cats (and humans can enjoy and supervise while the machines do the hard work).</p>
-<p>Reinforcement learning is a similar concept. We want software that can play Chess against us, or control a self-driving car, and more. Note that here there are multiple steps. Not just a single decision cat or dog, but rather a series of <strong>actions</strong>. The software “wins” only if all its moves led to a victory. The car needs to get safely to the destination, following the traffic rules and in a reasonable time. Accelerating, slowing, changing the wheel orientation, all need to contribute for this complex task.</p>
-<p>To some degree we can employ again supervised learning. In each situation, we can label the desired actions, for example by recording the actions of a human driver. We can then train a model to interpolate desired actions in similar situations. There are many Chess games to learn from, we can try to train a model based on those games. </p>
-<p>Reinforcement learning is a complementary technique to train models or here we’ll call those <strong>agents</strong>. Reinforcement learning may be more suitable for those control settings. For example with Chess a move is actually a part of a plan. Learning to repeat a move without gasping what needs to be done later may not work without extensive training set that may not be available, or is too hard to achieve with supervised training. The approach with reinforcement learning is to let the agent learn from interacting with the <strong>environment</strong>.</p>
-<p>The environment produces <strong>observations</strong> and the actions of the agent are communicated to the environment. The environment changes and the agent needs to learn to make smart decisions about its actions. The agent learns this time not from labels but rather by a <strong>reward mechanism</strong> that we provide to map a transition from one <strong>state</strong><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> in the environment to another state and its consequences.</p>
-<p>The agent should learn a <strong>policy</strong> to map an observation to the best action as to be rewarded as much as possible during the <strong>episode</strong>. In other words, the agent shall attempt to maximize the cumulative reward to some time horizon. For example the agent shall try to learn to win the Chess game, or to bring the passengers safely to their destination, while avoiding fines and in a reasonable time. There is much to talk about reward and how to design the reward mechanism. If in supervised learning one needs to make sure the labels are correct here with reinforcement learning, the reward mechanism is the equivalent.</p>
-<p>Note that the environment replaces the training set. By interacting with the environment, the agent can receive infinite feedback. There are some challenges however. We don’t want a car to self-drive in the real world before it is ready. We should have some simulator. The simulator should be very close to the real world and should reflect what happens in the real world. The reward mechanism that is often also associated with the environment should be relevant to learning the desired <strong>behavior</strong> for the agent.</p>
-<p>Another very important observation here is that the experience that the agent collects depends on the agent's actions. If a robot keeps going to the left, it will never find out what is there on the right. While in supervised learning we expect the samples in the training set to be of the same distribution (identically independently distributed), the interaction of an agent with an environment are very much dependent on the agent's actions and hence cannot be assumed to be of the same distribution.</p>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:1">
-<p>A state may mean the same thing as an observation. In many settings the observation is a (partial) derivative of the state, in the sense that the environment's state is more complete and more accurate than the observation that is available to the agent.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<h1 id="gym-gymnasium">Gym / Gymnasium</h1>
+<p>When we dive into RL we often discover that the environment is at least important as the exact algorithm. Not to say that all algorithms are suitable in all situations, but most of us will probably use an existing RL library and hope for the best.</p>
+<p>The environment on the other hand is where we’ll spend our time to match it to the task we want to achieve.
+Gym / Gymnasium (Open AI / Farama) is currently the de-facto standard for Python environments. A lot of RL Python packages for agents / policies are dependent on Gym. For example ‘stable-baselines3’ (sb3 for short) is dependent on ‘gym’, among other packages such as ‘torch’.</p>
+<p>According to Gym, an environment has the following functionality:</p>
+<ul>
+<li>
+<p>Initial_obs = reset()</p>
 </li>
-</ol>
-</div>
+<li>
+<p>obs, reward, done, info = step(action)</p>
+</li>
+<li>
+<p>render()</p>
+</li>
+</ul>
+<p>In addition the environment defines the ‘observation_space’ and the ‘action_space’.
+An agent intended to be used with a specific Gym environment, should be adjusted to the relevant ‘observation_space’ and the relevant ‘action_space’.
+Such and agent should provide the functionality to select and action given an observation. The learning setting involves loops where the observations, actions, rewards, and new observations are taken into account to update the policy of the agent based on the relevant RL learning algorithm.</p>
+<p>Note that the time according to Gym is discrete, in each time step the agent decides on an action based on the current observation and this action is fed into the environment’s ‘step’ function.</p>
+<p>The Gym environment is intended for training a single agent. A lot of times this is just what we need. Even if, for example the environment represents Chess game, and the agent represents the white, then the agent gets a chance to make the first move, then the environment also takes the action for the black. The new observation shall include both moves. Assume for now that we already have some good Chess software that can be used by the environment to play the opponent.</p>
+<p>If we do want to have multiple agents for a turn-play, or for a simultaneous play with multiple agents, there is an extension of Gym called ‘PettingZoo’. In PettingZoo, one have an iterator over all the agents and is expected to call step for each.</p>
+<p>The current state-of-the-art is a bit of a mess. Gym environment’s API was modified so that ‘step’ now returns instead of ‘done’, two new outputs: ‘terminated’, ‘truncated’. To indicate what exactly happened, whether we reached the “goal” or we’ve passed the allowed number of steps.
+Gym ‘0.21.0’ is still with the ‘done’.</p>
+<p>After that version we have:</p>
+<ul>
+<li>obs, reward, terminated, truncated, info = step(action)</li>
+</ul>
+<p>On top of that Open AI donated the code to Farama foundation, and the name was changed to Gymnasium. So you’ll sometimes in Python codes ‘import gymnasium as gym’.
+When you start playing with RL, for example with ‘stable-baselines3’, you most likely want to make sure to use Gym with version ‘0.21.0’ or what sb3 depends on at the time.</p>
+<p>If you want to create a new environment to represent your challenge, you can consider working with Gymnasium, yet make sure you have a matching RL package / code. You can use Tianshou or you can copy a Python (one file) implementation from CleanRL and do the relevant adjustments.</p>
+<p>I want to add a side note that I find Gym environment suggested API and in fact the standard, to leave the taste of something missing. I find it horrifying that the existing RL packages are forced to make Gym to be their dependency. A better setting, for me, would be a loosely coupling between the package for the environment and the package for the RL agents / algorithms / training.</p>
+<p>At the moment Gym / Gymnasium is here to stay, and you must wrap your head around it, what this is the way it works. There are benefits. All RL packages adjust their API to Gym environments so you can quickly try them out on your favorite environment.</p>
 
 
 
@@ -407,10 +421,10 @@ So instead of figuring how to do stuff, we communicate to the software what we w
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.2a6f1dda.min.js"></script>
+      <script src="../../assets/javascripts/bundle.2a6f1dda.min.js"></script>
       
     
   </body>
