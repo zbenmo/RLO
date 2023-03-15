@@ -9,17 +9,17 @@
       
       
       
-        <link rel="prev" href="../../reinforcement_learning/">
+        <link rel="prev" href="../spaces/">
       
       
-        <link rel="next" href="../spaces/">
+        <link rel="next" href="../../concepts/action_masking/">
       
       <link rel="icon" href="../../images/favicon-32x32.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.15">
     
     
       
-        <title>Gym / Gymnasium - RLO</title>
+        <title>Createing a new Gymnasium environment - RLO</title>
       
     
     
@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#gym-gymnasium" class="md-skip">
+        <a href="#createing-a-new-gymnasium-environment" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Gym / Gymnasium
+              Createing a new Gymnasium environment
             
           </span>
         </div>
@@ -243,21 +243,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../gym/" class="md-nav__link">
         Gym / Gymnasium
       </a>
-      
     </li>
   
 
@@ -281,11 +271,21 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../creating_a_new_environment/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Createing a new Gymnasium environment
       </a>
+      
     </li>
   
 
@@ -379,39 +379,96 @@
                   
 
 
-<h1 id="gym-gymnasium">Gym / Gymnasium</h1>
-<p>When we dive into RL we often discover that the environment is at least as important as the exact algorithm. Not to say that all algorithms are suitable in all situations, but most of us will probably use an existing RL library and hope for the best.</p>
-<p>The environment on the other hand is where we’ll spend our time to match it to the task we want to achieve.
-Gym / Gymnasium (Open AI and from now Farama foundation) is currently the de-facto standard for Python environments. A lot of RL Python packages for agents / policies are dependent on Gym. As an example, ‘stable-baselines3’ (sb3 for short), is dependent on 'torch' but also on ‘gym’ (and on a few more packages).</p>
-<p>According to Gym, an environment has the following functionality:</p>
+<h1 id="createing-a-new-gymnasium-environment">Createing a new Gymnasium environment</h1>
+<!-- There are many nice Gym / Gymnasium example environments and the first thing one should probably do is to run some tutorial of how to train an agent to interact with this environment and then to enjoy watching while evaluating the performance of the agent in the given environment.
+
+An interesting next step would be to create an environment yourself. You may be tempted to "solve" a given environment better, with fewer training steps / episodes. This is also important, especially if you some good ideas and want to push the envelope of what is possible. Howver writing a new environment can also teach you a lot about the engineering challenges and how things work together. -->
+
+<p>Developing a new Gymnasium / Gym environment involves subclassing <em>gym,Env</em> (potentially you declared <code>import gymnasium as gym</code>). You need to implement the following:</p>
 <ul>
-<li>
-<p>Initial_obs = reset()</p>
-</li>
-<li>
-<p>obs, reward, done, info = step(action)</p>
-</li>
-<li>
-<p>render()</p>
-</li>
+<li>reset</li>
+<li>step</li>
+<li>render</li>
 </ul>
-<p>In addition the environment defines the ‘observation_space’ and the ‘action_space’.
-An agent intended to be used with a specific Gym environment, should be adjusted to the relevant ‘observation_space’ and the relevant ‘action_space’.
-Such an agent should provide the functionality to select an action given an observation. The learning setting involves loops where the observations, actions, rewards, and new observations are taken into account to update the policy of the agent based on the relevant RL learning algorithm.</p>
-<p>Note that the time according to Gym is discrete, in each time step the agent decides on an action based on the current observation and this action is fed into the environment’s ‘step’ function.</p>
-<p>The Gym environment is intended for training a single agent. A lot of times this is just what we need. Even if, for example the environment represents a Chess game, and the agent represents the white, then the agent gets a chance to make the first move, then the environment also takes the action for the black. The new observation shall include both moves. Assume for now that we already have some good Chess software that can be used by the environment to play the opponent.</p>
-<p>If we do want to have multiple agents for a turn-play, or for a simultaneous play with multiple agents, there is an extension of Gym called ‘PettingZoo’. In PettingZoo, one have an iterator over all the agents and is expected to call 'step' for each.</p>
-<p>The current state-of-the-art is a bit of a mess. Gym environment’s API was modified so that ‘step’ now returns instead of ‘done’, two new outputs: ‘terminated’, ‘truncated’. To indicate what exactly happened, whether we reached the “goal” or we’ve passed the allowed number of steps.</p>
-<p>Gym ‘0.21.0’ is still with the ‘done’.
-After that version we have:</p>
+<p>In adition, your environment should have the following two attributes / member variables: <em>observation_space</em> and <em>observation_space</em>. For example in the initialization of your environment you can have (copied from Gymnasium documentation):</p>
+<pre><code class="language-py">    ...
+    self.observation_space = spaces.Dict(
+        {
+            &quot;agent&quot;: spaces.Box(0, size - 1, shape=(2,), dtype=int),
+            &quot;target&quot;: spaces.Box(0, size - 1, shape=(2,), dtype=int),
+        }
+    )
+
+    # We have 4 actions, corresponding to &quot;right&quot;, &quot;up&quot;, &quot;left&quot;, &quot;down&quot;
+    self.action_space = spaces.Discrete(4)
+    ...
+</code></pre>
+<p>'reset' should bring the environment to some initial state. It might involve randomness if relevant, or just to the starting position of, for example Chess game. 'reset' returns the initial observation.</p>
+<p>For Gymnasium, the signature of 'reset' looks as follows:</p>
+<pre><code class="language-py">def reset(self, seed=None, options=None):
+  ...
+</code></pre>
+<p>It is a good idea to pass the 'seed' to 'super' even if no randomness is expected, to avoid environment checks failure.</p>
+<pre><code class="language-py">def reset(self, seed=None, options=None):
+  # We need the following line to seed self.np_random
+  super().reset(seed=seed)
+  ...
+</code></pre>
+<p>As mentioned above 'reset' should return the first observation and I'm adding here, that also a "free form" info.
+For example:</p>
+<pre><code class="language-py">def reset(self, seed=None, options=None):
+  ...
+  return self._get_obs(), self._get_info()
+</code></pre>
+<p>It is a good idea to "wrap" the logic of constructing the observation from the state in a function as you'll need it also in 'step'. The information output can be just an empty dictinary, <code>{}</code>, if you wish.</p>
+<p>'step' receives and action and should return a tuple with the following: the next observation, the reward, was the environment terminated, was the environment truncated, and again some info.</p>
+<p>So for example:</p>
+<pre><code class="language-py">def step(self, action):
+  ...
+  reward = 1
+  done = False
+  info = {'mask': [True, False, False, True]} # an interested agent can use this mask to avoid illegal moves
+  return self._get_obs(), reward, done, False, info
+</code></pre>
+<p>'render' should for example nicely print the environment's state to the console.</p>
+<p>My suggestion would be to develop your environment without thinking about RL nor about Gym. Let's call this environment the "native" environment.
+Try to make your "native" environment passive in the sense, that in order to use it, one needs to call the methods of the environment from a loop. I've implemented an environment I'm calling "Collect Coins". See in <a href="https://github.com/zbenmo/qwertyenv">qwertyenv</a>.</p>
+<p>My environment is a turns game, two players, similar to Chess. The aim of the game is to collect more coins from the board than the other player. I've started by creating the "game" in a separate Python file. This is not a Gym environment, yet it enabled me to "play" in turn the white and then the black and so on till the game is over. I've added a check that you are playing the right player when you call the "play" function. Added also a verification that the play is legal. I have no reward mechanism other than allowing the user of the "game" to see the board, the current counts of coins, and if the game is done, who won.</p>
+<p>Now, to make it into an environment, I had to do the following:</p>
 <ul>
-<li>obs, reward, terminated, truncated, info = step(action)</li>
+<li>Keep an instance of the "game" in my environment. In 'reset' I could opt to create a new instance, or to call the equivalent on the <em>self.game</em> instance. I created a new instance of the "game" on each 'reset'.</li>
+<li>Find the Gym spaces that can be mapped to my "game" board and status, and the possible moves. For example, in my game, the board is a boolean 8x8 matrix where you still have coins, and in addition you have the location of the player and the location of the other player. Those three pieces of observation went into <em>gym.spaces.Dict</em>. Coming to think of it, an agent may wish to see the count of coins. I did not made this freeely available for the agent in a straight manner in this version.</li>
+<li>The action space, I've decided to have as the target square. The reason is that in my game you can have various Chess pieces (this is determined in the initialization of the game). I have at the moment knights and rocks. The rocks are actually a limited version, where they can be moved only to a neighboor square. Maybe I'll add in the future also a "real" rock. By having an action space of the target square, I've avoided having two different action spaces for each. I'm just telling what I've done, don't take from that that it was a smart decision.  </li>
+<li>Develop a reward mechanism. In my first iteration I went for +1 for a win, 0 for draw, and -1 for a loss. </li>
+<li>Now I had an enginnering challenge. Let's say I let the external agent act as the first player (white). But where will the other player come from? This had to be implemented in the environment. So towards the end of the 'step' method, I've took a move for the other player. In the 'reset' this logic was also used if the external agent is the black and needs to move second.</li>
+<li>The 'render' functionality was implemented in the "native" game environment.</li>
 </ul>
-<p>On top of that Open AI donated the code to Farama foundation, and the name was changed to Gymnasium. So you’ll sometimes in Python codes ‘import gymnasium as gym’.
-When you start playing with RL, for example with ‘stable-baselines3’, you most likely want to make sure to use Gym with version ‘0.21.0’ or what sb3 depends on at the time.</p>
-<p>If you want to create a new environment to represent your challenge, you can consider working with Gymnasium, yet make sure you have a matching RL package / code. You can use Tianshou or you can copy a Python (one file) implementation from CleanRL and do the relevant adjustments.</p>
-<p>I want to add a side note that I find Gym environment suggested API and in fact the standard, to leave the taste of something missing. I find it horrifying that the existing RL packages are forced to make Gym to be their dependency. A better setting, for me, would be a loosely coupling between the package for the environment and the package for the RL agents / algorithms / training.</p>
-<p>At the moment Gym / Gymnasium is here to stay, and you must wrap your head around it, that this is the way it works. There are benefits. All RL packages adjust their API to Gym environments so you can quickly try them out on your favorite environment.</p>
+<p>If you build a Python package, it is a good practive to 'register' your Gym environent, so that one can later find it for example with <code>env =  gym.make('qwertyenv/CollectCoins-v0', pieces=['rock', 'rock'])</code></p>
+<p>A registration is done usually in the <em>__init__.py</em> of the package:</p>
+<pre><code class="language-py">from gym.envs.registration import register
+
+...
+register(
+    id='qwertyenv/CollectCoins-v0',
+    entry_point='qwertyenv.collect_coins:CollectCoinsEnv',
+    max_episode_steps=300
+)
+...
+</code></pre>
+<p>Here are some lessons I learned.</p>
+<p>Make sure to debug the "native" environment (<em>assert</em>s, <em>pytest</em>). <img alt="😄" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f604.svg" title=":smile:" /></p>
+<p>For your Gym environment, write as a minimum, a <em>pytest</em> to call:</p>
+<pre><code class="language-py">from gymnasium.utils.env_checker import check_env
+..
+
+...
+
+def test_my_env():
+  ..
+  check(env)
+</code></pre>
+<p>The <em>observation_space</em> and the <em>action_space</em>, have in addition to "sample", also a very useful functionality for debugging. One can check if the space "contains" a specific value that he/she wants to return as an observation, or pass as an action. When the relevant space does not contain the value, this must be first solved by either changing the space, or realizing that the action or observation indicate a potential bug.</p>
+<p>Above enabled me to test with SB3 (I wrote it for Gym '0.21.0'). I will tell more about my experiments when discussing Gym wrappers and PettingZoo (I will write about it soon......)</p>
 
 
 

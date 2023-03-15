@@ -12,7 +12,7 @@
         <link rel="prev" href="../gym/">
       
       
-        <link rel="next" href="../../concepts/action_masking/">
+        <link rel="next" href="../creating_a_new_environment/">
       
       <link rel="icon" href="../../images/favicon-32x32.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.15">
@@ -277,6 +277,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../creating_a_new_environment/" class="md-nav__link">
+        Createing a new Gymnasium environment
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -301,14 +315,14 @@
       
       
         <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
-          Concepts
+          concepts
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
-          Concepts
+          concepts
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -376,7 +390,7 @@ self.observation_space = spaces.Box(0, 1, shape=(2,))
 <p>In the example of a Chess game, we may want to communicate to the agent where are its pieces, where are the other player’s pieces, and in this way unify the cases when the player is the white and when it is actually the black. In Chess we may also want to communicate if specific moves, such as castling, are still valid.</p>
 <p>What would be the action space for a Chess agent? A naïve approach can be to pick a piece (a square), and move it to another square. A lot of those “actions” are just moving air. A lot of them are trying to move the opponents pieces, or to move a piece of yours to an illegal place. Yet still by this approach of choosing two squares, we may make a simple interface to an RL agent implementation.</p>
 <p>And so spaces are both the type of the inputs and the outputs, and also the possible values that are accepted. Is it a finite discrete choice, ex. {up, right, down, left}, or two numbers, each of which from [-3.1, 3.8], etc. One can define spaces that are a combination of values of complimentary meaning, values, and types. The combinations are defined, among other options, with <em>Dict</em> spaces.</p>
-<p>The environment should define it observation space and its action space based on its needs, however, once defined, we need to find RL algorithm implementation that supports the required observation and action spaces. </p>
+<p>The environment should define its observation space and its action space based on its needs, however, once defined, we need to find RL algorithm implementation that supports the required observation and action spaces. </p>
 <p>For example, if the environment wish to provide images as observations, we may need an RL implementation that have maybe a CNN. If the action space is discrete we may have the output to be a fixed size layer with softmax activation. <em>Dict</em> observations may require some software construct that shall combine those in some clever way to the inputs of a NN for example.</p>
 <p>A nice feature of spaces is that you can sample from them. Which means that you can play with an environment, even before having any agent. For example (taken from Gymnasium documentation):</p>
 <pre><code>import gymnasium as gym
