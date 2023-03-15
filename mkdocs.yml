@@ -11,3 +11,15 @@ theme:
   favicon: images/favicon-32x32.png
 markdown_extensions:
   - footnotes
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg  
+nav:
+  - index.md
+  - reinforcement_learning.md
+  - Gymnasium:
+    - Gymnasium/gym.md
+    - Gymnasium/spaces.md
+    - Gymnasium/creating_a_new_environment.md
+  - concepts:
+    - concepts/action_masking.md

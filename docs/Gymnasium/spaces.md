@@ -17,7 +17,7 @@ What would be the action space for a Chess agent? A naïve approach can be to pi
 
 And so spaces are both the type of the inputs and the outputs, and also the possible values that are accepted. Is it a finite discrete choice, ex. {up, right, down, left}, or two numbers, each of which from [-3.1, 3.8], etc. One can define spaces that are a combination of values of complimentary meaning, values, and types. The combinations are defined, among other options, with *Dict* spaces.
 
-The environment should define it observation space and its action space based on its needs, however, once defined, we need to find RL algorithm implementation that supports the required observation and action spaces. 
+The environment should define its observation space and its action space based on its needs, however, once defined, we need to find RL algorithm implementation that supports the required observation and action spaces. 
 
 For example, if the environment wish to provide images as observations, we may need an RL implementation that have maybe a CNN. If the action space is discrete we may have the output to be a fixed size layer with softmax activation. *Dict* observations may require some software construct that shall combine those in some clever way to the inputs of a NN for example.
 
