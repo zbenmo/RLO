@@ -475,7 +475,7 @@ register(
 
 def test_my_env():
   ..
-  check(env)
+  check_env(env)
 </code></pre>
 <p>The <em>observation_space</em> and the <em>action_space</em>, have in addition to "sample", also a very useful functionality for debugging. One can check if the space "contains" a specific value that he/she wants to return as an observation, or pass as an action. When the relevant space does not contain the value, this must be first solved by either changing the space, or realizing that the action or observation indicate a potential bug.</p>
 <p>Above enabled me to test with SB3 (I wrote it for Gym '0.21.0'). I will tell more about my experiments when discussing Gym wrappers and PettingZoo (I will write about it soon......)</p>
