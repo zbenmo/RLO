@@ -9,24 +9,24 @@
       
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../creating_a_new_environment/">
       
       
-        <link rel="next" href="../Gymnasium/gym/">
+        <link rel="next" href="../../concepts/action_masking/">
       
-      <link rel="icon" href="../images/favicon-32x32.png">
+      <link rel="icon" href="../../images/favicon-32x32.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.15">
     
     
       
-        <title>Reinforcement Learning - RLO</title>
+        <title>Wrappers - RLO</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.113286f1.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.113286f1.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
       
       
 
@@ -42,7 +42,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#reinforcement-learning" class="md-skip">
+        <a href="#wrappers" class="md-skip">
           Skip to content
         </a>
       
@@ -81,7 +81,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="RLO" class="md-header__button md-logo" aria-label="RLO" data-md-component="logo">
+    <a href="../.." title="RLO" class="md-header__button md-logo" aria-label="RLO" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 19h4.6L2.62 8.64C2.23 8 2 7.29 2 6.5a3.999 3.999 0 0 1 7.87-1H14V3c0-1.1.9-2 2-2v2.59L17.59 2H22v2h-3.59L16 6.41v.18L18.41 9H22v2h-4.41L16 9.41V12a2 2 0 0 1-2-2V7.5H9.87c-.1.39-.26.76-.46 1.1l6 10.4H20a2 2 0 0 1 2 2v1H2v-1c0-1.1.9-2 2-2m3.91-9c-.56.32-1.21.5-1.91.5l4.91 8.5h2.19l-5.19-9M6 4.5a2 2 0 0 0-2 2c0 1.11.89 2 2 2 1.11 0 2-.89 2-2a2 2 0 0 0-2-2Z"/></svg>
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Reinforcement Learning
+              Wrappers
             
           </span>
         </div>
@@ -167,7 +167,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="RLO" class="md-nav__button md-logo" aria-label="RLO" data-md-component="logo">
+    <a href="../.." title="RLO" class="md-nav__button md-logo" aria-label="RLO" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 19h4.6L2.62 8.64C2.23 8 2 7.29 2 6.5a3.999 3.999 0 0 1 7.87-1H14V3c0-1.1.9-2 2-2v2.59L17.59 2H22v2h-3.59L16 6.41v.18L18.41 9H22v2h-4.41L16 9.41V12a2 2 0 0 1-2-2V7.5H9.87c-.1.39-.26.76-.46 1.1l6 10.4H20a2 2 0 0 1 2 2v1H2v-1c0-1.1.9-2 2-2m3.91-9c-.56.32-1.21.5-1.91.5l4.91 8.5h2.19l-5.19-9M6 4.5a2 2 0 0 0-2 2c0 1.11.89 2 2 2 1.11 0 2-.89 2-2a2 2 0 0 0-2-2Z"/></svg>
@@ -186,7 +186,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         Reinforcement Learning Observations
       </a>
     </li>
@@ -197,6 +197,92 @@
       
       
 
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reinforcement_learning/" class="md-nav__link">
+        Reinforcement Learning
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          Gymnasium
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Gymnasium
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gym/" class="md-nav__link">
+        Gym / Gymnasium
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spaces/" class="md-nav__link">
+        Spaces
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../creating_a_new_environment/" class="md-nav__link">
+        Creating a new Gymnasium environment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
   
   
     
@@ -211,93 +297,9 @@
       
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Reinforcement Learning
-      </a>
-      
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
-      
-      
-      
-        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-          Gymnasium
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_3">
-          <span class="md-nav__icon md-icon"></span>
-          Gymnasium
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Gymnasium/gym/" class="md-nav__link">
-        Gym / Gymnasium
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Gymnasium/spaces/" class="md-nav__link">
-        Spaces
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Gymnasium/creating_a_new_environment/" class="md-nav__link">
-        Creating a new Gymnasium environment
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Gymnasium/wrappers/" class="md-nav__link">
         Wrappers
       </a>
+      
     </li>
   
 
@@ -344,7 +346,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../concepts/action_masking/" class="md-nav__link">
+      <a href="../../concepts/action_masking/" class="md-nav__link">
         Action Masking
       </a>
     </li>
@@ -391,27 +393,51 @@
                   
 
 
-<h1 id="reinforcement-learning">Reinforcement Learning</h1>
-<p>We want to build software that automates tasks or acts on our behalf in various situations.
-This is nothing new. We have build software for some time now. We have came up with algorithms and engineering solutions.</p>
-<p>The future lies apparently with <strong>machine learning</strong>. We can build parts of our software systems in new ways. By <strong>training</strong> software from examples.
-So instead of figuring how to do stuff, we communicate to the software what we want, and the software is built automatically from this description.</p>
-<p>For example for teaching software to distinguish between cats and dogs in images we provide examples of cats and of dogs and we use <strong>supervised learning</strong>. This is a machine learning technique with which a <strong>model</strong> slowly picks up the statistical hints from the labeled examples till it can fulfil the task of predicting correctly the labels on unseen examples, and hence we have achieved a software solution that can carry on from now in telling dogs from cats (and humans can enjoy and supervise while the machines do the hard work).</p>
-<p>Reinforcement learning is a similar concept. We want software that can play Chess against us, or control a self-driving car, and more. Note that here there are multiple steps. Not just a single decision cat or dog, but rather a series of <strong>actions</strong>. The software “wins” only if all its moves led to a victory. The car needs to get safely to the destination, following the traffic rules and in a reasonable time. Accelerating, slowing, changing the wheel orientation, all need to contribute for this complex task.</p>
-<p>To some degree we can employ again supervised learning. In each situation, we can label the desired actions, for example by recording the actions of a human driver. We can then train a model to interpolate desired actions in similar situations. There are many Chess games to learn from, we can try to train a model based on those games. </p>
-<p>Reinforcement learning is a complementary technique to train models or here we’ll call those <strong>agents</strong>. Reinforcement learning may be more suitable for those control settings. For example with Chess a move is actually a part of a plan. Learning to repeat a move without gasping what needs to be done later may not work without extensive training set that may not be available, or is too hard to achieve with supervised training. The approach with reinforcement learning is to let the agent learn from interacting with the <strong>environment</strong>.</p>
-<p>The environment produces <strong>observations</strong> and the actions of the agent are communicated to the environment. The environment changes and the agent needs to learn to make smart decisions about its actions. The agent learns this time not from labels but rather by a <strong>reward mechanism</strong> that we provide to map a transition from one <strong>state</strong><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> in the environment to another state and its consequences.</p>
-<p>The agent should learn a <strong>policy</strong> to map an observation to the best action as to be rewarded as much as possible during the <strong>episode</strong>. In other words, the agent shall attempt to maximize the cumulative reward to some time horizon. For example the agent shall try to learn to win the Chess game, or to bring the passengers safely to their destination, while avoiding fines and in a reasonable time. There is much to talk about reward and how to design the reward mechanism. If in supervised learning one needs to make sure the labels are correct here with reinforcement learning, the reward mechanism is the equivalent.</p>
-<p>Note that the environment replaces the training set. By interacting with the environment, the agent can receive infinite feedback. There are some challenges however. We don’t want a car to self-drive in the real world before it is ready. We should have some simulator. The simulator should be very close to the real world and should reflect what happens in the real world. The reward mechanism that is often also associated with the environment should be relevant to learning the desired <strong>behavior</strong> for the agent.</p>
-<p>Another very important observation here is that the experience that the agent collects depends on the agent's actions. If a robot keeps going to the left, it will never find out what is there on the right. While in supervised learning we expect the samples in the training set to be of the same distribution (identically independently distributed), the interaction of an agent with an environment are very much dependent on the agent's actions and hence cannot be assumed to be of the same distribution.</p>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:1">
-<p>A state may mean the same thing as an observation. In many settings the observation is a (partial) derivative of the state, in the sense that the environment's state is more complete and more accurate than the observation that is available to the agent.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
+<h1 id="wrappers">Wrappers</h1>
+<p>A wrapper in Gym / Gymnasium is just an environment that delegates its calls to another environment, potentially doing first some adjustments. Why is it a good idea and when will we be using wrappers?</p>
+<p>The agents developed against Gym environments in mind, expect a specific interface. That is in particular the 'step' function. One is expected to pass as an argument to the 'step' function an action from the <strong>action space</strong> and one expects to receive in return an observation (the next observation) from the <strong>observation space</strong>. The <strong>reward</strong> that is returned from the 'step' function determines also if the agent is able to learn the desired behaviour, and is not less important from the observation and the learning algorithm itself.</p>
+<p>What do you do when you want your agent to think of the problem a little different. What do you do if you want the action space to be a bit different? I'll give an example. The environment expects a target destination on an '8x8' board game. You train an agent with your preferred RL library, and a suitable method, yet the agent seems to learn very slow. Let's assume that the agent avoids illegal moves, for example, by taking into account <a href="../../concepts/action_masking">action masking</a>.</p>
+<p>Still the "learning" is slow. You brainstorm with friends and they point that your (agent) piece can only move {up, left, down, right}. You hypnotise that if the action space is changed to those four possible actions, the agent will learn faster. To try you quickly wrap the original environment, with an environment that declares its ‘action_space’ with above four directions, and translates this action into the target square. That's it. You can train an agent with the "new" environment and see if the learning is faster.</p>
+<p>While you can create a new environment to wrap the old environment, or also to create a new general wrapper based on <em>gym.Wrapper</em>, in above case you can actually base your wrapper on <em>gym.ActionWrapper</em>. If you base your wrapper on <em>gym.ActionWrapper</em>, you only need to have the new <em>action_space</em> available and to implement a function called <em>action</em> that takes an action from the new action space (the one of the wrapper), and return the matching action of the wrapped environment. For example, something I did in <a href="https://github.com/zbenmo/qwertyenv">qwertyenv</a>.</p>
+<pre><code class="language-py">import gym
+from typing import Tuple, Callable
+import numpy as np
+
+
+class UpDownLeftRight(gym.ActionWrapper):
+  &quot;&quot;&quot;
+  A gym environment wrapper to enable U/D/L/R action space when the wrapped environment
+  actually expects a destination in cartesian coordinates.
+  &quot;&quot;&quot;
+
+  def __init__(self, env: gym.Env,
+               get_current_location: Callable[[], Tuple[int, int]]):
+
+    super().__init__(env)
+    self.get_current_location = get_current_location
+
+    self.action_space = gym.spaces.Discrete(4)
+
+    self.udlr_action_to_board_action = {
+      0: (0, -1), # up
+      1: (0, +1), # down
+      2: (-1, 0), # left
+      3: (+1, 0), # right
+    }
+
+  def action(self, action: int) -&gt; Tuple[int, int]:
+    current_location = self.get_current_location()
+    return tuple(np.add(current_location, self.udlr_action_to_board_action[action]))
+</code></pre>
+<p>Note, that you are very welcome to wrap your wrapped environment yet another time, and as many times are you need. A wrapped environment is still just an environment.</p>
+<p>There are (at least) two additional useful wrapper base classes. The one is <em>ObservationWrapper</em>.</p>
+<p>For example, you may wish to convert an RGB image into a monocolour image, as you believe it is simpler to learn from monocolour image. You can also build a <em>ObservationWrapper</em> to enrich the observation by introducing a short history to capture motion. Think of a single frame from an ATARI game, say a ball is heading towards you. Can you tell if it is going to the left or to the right? If you are given a few additional frames from the past you may see the direction.</p>
+<p>Wait, aren't we breaking the Markov Decision Process (<strong>MDP</strong>) assumption? And what is the <strong>MDP</strong> assumption to begin with?</p>
+<p>In order to simplify the world a little, we assume that at any given moment the state of the environment represents everything that we need to know in order to act. What happened before with the environment, our (the agent's) past mistakes, nothing matters.</p>
+<p>Wanted to use here "carpe diem", yet the expression is not appropriate as the future actually is very relevant. You do what is right now, yet of course you need to take into account the future and try to foresee it and what will be the consequences of your current action. Regrets are not helpful, but planning of some sort is the essence of RL.
+The environment, if indeed an <strong>MDP</strong>, behaves similarly, subject to randomness, when we return to the same state and take the same action. This is exactly what an agent needs to learn.</p>
+<p>So, back to the question, did we break the <strong>MDP</strong> assumption by introducing history? By changing the observation space, we've created a new <strong>MDP</strong>, for which there are more states. So still an <strong>MDP</strong> but a more detailed one. A thing that can help or harm the learning process. Yet to experiment.</p>
+<p>The other useful wrapper base class is <em>RewardWrapper</em>. Why to touch the reward? Maybe a reward of <em>+1</em> / <em>-1</em> at the end of the game is correct, but it takes the agent a lot of time to get to a win, and on the way getting no signal for progress is not helpful. We can add indication of good progress by giving some small rewards signals on the way. This will be under <strong>reward shaping</strong>. A very important concept. Another reason that we may want to change the reward is in order to scale / normalize it for the benefit of our neural network learning optimization.</p>
 
 
 
@@ -449,10 +475,10 @@ So instead of figuring how to do stuff, we communicate to the software what we w
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.2a6f1dda.min.js"></script>
+      <script src="../../assets/javascripts/bundle.2a6f1dda.min.js"></script>
       
     
   </body>

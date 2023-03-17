@@ -12,14 +12,14 @@
         <link rel="prev" href="../spaces/">
       
       
-        <link rel="next" href="../../concepts/action_masking/">
+        <link rel="next" href="../wrappers/">
       
       <link rel="icon" href="../../images/favicon-32x32.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.15">
     
     
       
-        <title>Createing a new Gymnasium environment - RLO</title>
+        <title>Creating a new Gymnasium environment - RLO</title>
       
     
     
@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#createing-a-new-gymnasium-environment" class="md-skip">
+        <a href="#creating-a-new-gymnasium-environment" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Createing a new Gymnasium environment
+              Creating a new Gymnasium environment
             
           </span>
         </div>
@@ -283,9 +283,23 @@
       
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Createing a new Gymnasium environment
+        Creating a new Gymnasium environment
       </a>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wrappers/" class="md-nav__link">
+        Wrappers
+      </a>
     </li>
   
 
@@ -379,18 +393,14 @@
                   
 
 
-<h1 id="createing-a-new-gymnasium-environment">Createing a new Gymnasium environment</h1>
-<!-- There are many nice Gym / Gymnasium example environments and the first thing one should probably do is to run some tutorial of how to train an agent to interact with this environment and then to enjoy watching while evaluating the performance of the agent in the given environment.
-
-An interesting next step would be to create an environment yourself. You may be tempted to "solve" a given environment better, with fewer training steps / episodes. This is also important, especially if you some good ideas and want to push the envelope of what is possible. Howver writing a new environment can also teach you a lot about the engineering challenges and how things work together. -->
-
+<h1 id="creating-a-new-gymnasium-environment">Creating a new Gymnasium environment</h1>
 <p>Developing a new Gymnasium / Gym environment involves subclassing <em>gym,Env</em> (potentially you declared <code>import gymnasium as gym</code>). You need to implement the following:</p>
 <ul>
 <li>reset</li>
 <li>step</li>
 <li>render</li>
 </ul>
-<p>In adition, your environment should have the following two attributes / member variables: <em>observation_space</em> and <em>observation_space</em>. For example in the initialization of your environment you can have (copied from Gymnasium documentation):</p>
+<p>In addition, your environment should have the following two attributes / member variables: <em>observation_space</em> and <em>observation_space</em>. For example in the initialization of your environment you can have (copied from Gymnasium documentation):</p>
 <pre><code class="language-py">    ...
     self.observation_space = spaces.Dict(
         {
@@ -420,7 +430,7 @@ For example:</p>
   ...
   return self._get_obs(), self._get_info()
 </code></pre>
-<p>It is a good idea to "wrap" the logic of constructing the observation from the state in a function as you'll need it also in 'step'. The information output can be just an empty dictinary, <code>{}</code>, if you wish.</p>
+<p>It is a good idea to "wrap" the logic of constructing the observation from the state in a function as you'll need it also in 'step'. The information output can be just an empty dict, <code>{}</code>, if you wish.</p>
 <p>'step' receives and action and should return a tuple with the following: the next observation, the reward, was the environment terminated, was the environment truncated, and again some info.</p>
 <p>So for example:</p>
 <pre><code class="language-py">def step(self, action):
@@ -437,13 +447,13 @@ Try to make your "native" environment passive in the sense, that in order to use
 <p>Now, to make it into an environment, I had to do the following:</p>
 <ul>
 <li>Keep an instance of the "game" in my environment. In 'reset' I could opt to create a new instance, or to call the equivalent on the <em>self.game</em> instance. I created a new instance of the "game" on each 'reset'.</li>
-<li>Find the Gym spaces that can be mapped to my "game" board and status, and the possible moves. For example, in my game, the board is a boolean 8x8 matrix where you still have coins, and in addition you have the location of the player and the location of the other player. Those three pieces of observation went into <em>gym.spaces.Dict</em>. Coming to think of it, an agent may wish to see the count of coins. I did not made this freeely available for the agent in a straight manner in this version.</li>
-<li>The action space, I've decided to have as the target square. The reason is that in my game you can have various Chess pieces (this is determined in the initialization of the game). I have at the moment knights and rocks. The rocks are actually a limited version, where they can be moved only to a neighboor square. Maybe I'll add in the future also a "real" rock. By having an action space of the target square, I've avoided having two different action spaces for each. I'm just telling what I've done, don't take from that that it was a smart decision.  </li>
+<li>Find the Gym spaces that can be mapped to my "game" board and status, and the possible moves. For example, in my game, the board is a boolean 8x8 matrix where you still have coins, and in addition you have the location of the player and the location of the other player. Those three pieces of observation went into <em>gym.spaces.Dict</em>. Coming to think of it, an agent may wish to see the count of coins. I did not made this freely available for the agent in a straight manner in this version.</li>
+<li>The action space, I've decided to have as the target square. The reason is that in my game you can have various Chess pieces (this is determined in the initialization of the game). I have at the moment knights and rocks. The rocks are actually a limited version, where they can be moved only to a neighbour square. Maybe I'll add in the future also a "real" rock. By having an action space of the target square, I've avoided having two different action spaces for each. I'm just telling what I've done, don't take from that that it was a smart decision.  </li>
 <li>Develop a reward mechanism. In my first iteration I went for +1 for a win, 0 for draw, and -1 for a loss. </li>
-<li>Now I had an enginnering challenge. Let's say I let the external agent act as the first player (white). But where will the other player come from? This had to be implemented in the environment. So towards the end of the 'step' method, I've took a move for the other player. In the 'reset' this logic was also used if the external agent is the black and needs to move second.</li>
+<li>Now I had an engineering challenge. Let's say I let the external agent act as the first player (white). But where will the other player come from? This had to be implemented in the environment. So towards the end of the 'step' method, I've took a move for the other player. In the 'reset' this logic was also used if the external agent is the black and needs to move second.</li>
 <li>The 'render' functionality was implemented in the "native" game environment.</li>
 </ul>
-<p>If you build a Python package, it is a good practive to 'register' your Gym environent, so that one can later find it for example with <code>env =  gym.make('qwertyenv/CollectCoins-v0', pieces=['rock', 'rock'])</code></p>
+<p>If you build a Python package, it is a good practice to 'register' your Gym environment, so that one can later find it for example with <code>env =  gym.make('qwertyenv/CollectCoins-v0', pieces=['rock', 'rock'])</code></p>
 <p>A registration is done usually in the <em>__init__.py</em> of the package:</p>
 <pre><code class="language-py">from gym.envs.registration import register
 
