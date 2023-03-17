@@ -110,7 +110,7 @@ from gymnasium.utils.env_checker import check_env
 
 def test_my_env():
   ..
-  check(env)
+  check_env(env)
 ```
 
 The *observation_space* and the *action_space*, have in addition to "sample", also a very useful functionality for debugging. One can check if the space "contains" a specific value that he/she wants to return as an observation, or pass as an action. When the relevant space does not contain the value, this must be first solved by either changing the space, or realizing that the action or observation indicate a potential bug.
