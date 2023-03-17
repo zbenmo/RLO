@@ -1,8 +1,4 @@
-# Createing a new Gymnasium environment
-
-<!-- There are many nice Gym / Gymnasium example environments and the first thing one should probably do is to run some tutorial of how to train an agent to interact with this environment and then to enjoy watching while evaluating the performance of the agent in the given environment.
-
-An interesting next step would be to create an environment yourself. You may be tempted to "solve" a given environment better, with fewer training steps / episodes. This is also important, especially if you some good ideas and want to push the envelope of what is possible. Howver writing a new environment can also teach you a lot about the engineering challenges and how things work together. -->
+# Creating a new Gymnasium environment
 
 Developing a new Gymnasium / Gym environment involves subclassing *gym,Env* (potentially you declared ```import gymnasium as gym```). You need to implement the following:
 
@@ -10,7 +6,7 @@ Developing a new Gymnasium / Gym environment involves subclassing *gym,Env* (pot
 - step
 - render
 
-In adition, your environment should have the following two attributes / member variables: *observation_space* and *observation_space*. For example in the initialization of your environment you can have (copied from Gymnasium documentation):
+In addition, your environment should have the following two attributes / member variables: *observation_space* and *observation_space*. For example in the initialization of your environment you can have (copied from Gymnasium documentation):
 
 ``` py
     ...
@@ -53,7 +49,7 @@ def reset(self, seed=None, options=None):
   return self._get_obs(), self._get_info()
 ```
 
-It is a good idea to "wrap" the logic of constructing the observation from the state in a function as you'll need it also in 'step'. The information output can be just an empty dictinary, ```{}```, if you wish.
+It is a good idea to "wrap" the logic of constructing the observation from the state in a function as you'll need it also in 'step'. The information output can be just an empty dict, ```{}```, if you wish.
 
 'step' receives and action and should return a tuple with the following: the next observation, the reward, was the environment terminated, was the environment truncated, and again some info.
 
@@ -78,13 +74,13 @@ My environment is a turns game, two players, similar to Chess. The aim of the ga
 Now, to make it into an environment, I had to do the following:
 
 - Keep an instance of the "game" in my environment. In 'reset' I could opt to create a new instance, or to call the equivalent on the *self.game* instance. I created a new instance of the "game" on each 'reset'.
-- Find the Gym spaces that can be mapped to my "game" board and status, and the possible moves. For example, in my game, the board is a boolean 8x8 matrix where you still have coins, and in addition you have the location of the player and the location of the other player. Those three pieces of observation went into *gym.spaces.Dict*. Coming to think of it, an agent may wish to see the count of coins. I did not made this freeely available for the agent in a straight manner in this version.
-- The action space, I've decided to have as the target square. The reason is that in my game you can have various Chess pieces (this is determined in the initialization of the game). I have at the moment knights and rocks. The rocks are actually a limited version, where they can be moved only to a neighboor square. Maybe I'll add in the future also a "real" rock. By having an action space of the target square, I've avoided having two different action spaces for each. I'm just telling what I've done, don't take from that that it was a smart decision.  
+- Find the Gym spaces that can be mapped to my "game" board and status, and the possible moves. For example, in my game, the board is a boolean 8x8 matrix where you still have coins, and in addition you have the location of the player and the location of the other player. Those three pieces of observation went into *gym.spaces.Dict*. Coming to think of it, an agent may wish to see the count of coins. I did not made this freely available for the agent in a straight manner in this version.
+- The action space, I've decided to have as the target square. The reason is that in my game you can have various Chess pieces (this is determined in the initialization of the game). I have at the moment knights and rocks. The rocks are actually a limited version, where they can be moved only to a neighbour square. Maybe I'll add in the future also a "real" rock. By having an action space of the target square, I've avoided having two different action spaces for each. I'm just telling what I've done, don't take from that that it was a smart decision.  
 - Develop a reward mechanism. In my first iteration I went for +1 for a win, 0 for draw, and -1 for a loss. 
-- Now I had an enginnering challenge. Let's say I let the external agent act as the first player (white). But where will the other player come from? This had to be implemented in the environment. So towards the end of the 'step' method, I've took a move for the other player. In the 'reset' this logic was also used if the external agent is the black and needs to move second.
+- Now I had an engineering challenge. Let's say I let the external agent act as the first player (white). But where will the other player come from? This had to be implemented in the environment. So towards the end of the 'step' method, I've took a move for the other player. In the 'reset' this logic was also used if the external agent is the black and needs to move second.
 - The 'render' functionality was implemented in the "native" game environment.
 
-If you build a Python package, it is a good practive to 'register' your Gym environent, so that one can later find it for example with ```env =  gym.make('qwertyenv/CollectCoins-v0', pieces=['rock', 'rock'])```
+If you build a Python package, it is a good practice to 'register' your Gym environment, so that one can later find it for example with ```env =  gym.make('qwertyenv/CollectCoins-v0', pieces=['rock', 'rock'])```
 
 A registration is done usually in the *\_\_init\_\_.py* of the package:
 
