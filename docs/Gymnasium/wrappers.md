@@ -1,7 +1,8 @@
 # Wrappers
 
-A wrapper in Gym / Gymnasium is just an environment that delegates its calls to another environment, potentially doing first some adjustments. Why is it a good idea and when will we be using wrappers?
+A wrapper in Gym/Gymnasium is just an environment that delegates its calls to another environment, potentially doing first some adjustments.
 
+Why is it a good idea to introduce wrappers and when will we want to use wrappers?  
 The agents developed against Gym environments in mind, expect a specific interface. That is in particular the 'step' function. One is expected to pass as an argument to the 'step' function an action from the **action space** and one expects to receive in return an observation (the next observation) from the **observation space**. The **reward** that is returned from the 'step' function determines also if the agent is able to learn the desired behaviour, and is not less important from the observation and the learning algorithm itself.
 
 What do you do when you want your agent to think of the problem a little different. What do you do if you want the action space to be a bit different? I'll give an example. The environment expects a target destination on an '8x8' board game. You train an agent with your preferred RL library, and a suitable method, yet the agent seems to learn very slow. Let's assume that the agent avoids illegal moves, for example, by taking into account [action masking](../../concepts/action_masking).

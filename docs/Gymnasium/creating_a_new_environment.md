@@ -1,6 +1,6 @@
 # Creating a new Gymnasium environment
 
-Developing a new Gymnasium / Gym environment involves subclassing *gym,Env* (potentially you declared ```import gymnasium as gym```). You need to implement the following:
+Developing a new Gymnasium / Gym environment involves subclassing *gym.Env* (potentially you declared ```import gymnasium as gym```). You need to implement the following:
 
 - reset
 - step
