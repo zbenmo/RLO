@@ -3,8 +3,8 @@
 We want to build software that automates tasks or acts on our behalf in various situations.
 This is nothing new. We have build software for some time now. We have came up with algorithms and engineering solutions.
 
-The future lies apparently with **machine learning**. We can build parts of our software systems in new ways. By **training** software from examples.
-So instead of figuring how to do stuff, we communicate to the software what we want, and the software is built automatically from this description.
+The future lies apparently with **machine learning**. We can build parts of our software systems in new ways; by **training** software from examples.
+So instead of figuring how to do stuff, we communicate to the software what we want, and the software is built automatically from this "description".
 
 For example for teaching software to distinguish between cats and dogs in images we provide examples of cats and of dogs and we use **supervised learning**. This is a machine learning technique with which a **model** slowly picks up the statistical hints from the labeled examples till it can fulfil the task of predicting correctly the labels on unseen examples, and hence we have achieved a software solution that can carry on from now in telling dogs from cats (and humans can enjoy and supervise while the machines do the hard work).
 
@@ -20,7 +20,7 @@ The environment produces **observations** and the actions of the agent are commu
 I'm bringing below an image taken from Wikipedia. In this image, we see yet another component in the setting. This is the **interpreter**.
 
 <figure>
-  <img src="../images/Reinforcement_learning_diagram.svg.png" alt="Reinforcement learning diagram"/>
+  <img src="../images/Reinforcement_learning_diagram.svg.png" title="Reinforcement learning diagram"/>
   <figcaption>Reinforecement Learning Conceptual Model - Wikipedia</figcaption>
 </figure>
 

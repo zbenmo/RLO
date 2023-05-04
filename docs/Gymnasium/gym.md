@@ -1,8 +1,8 @@
-# Gym / Gymnasium
+# Gym/Gymnasium
 When we dive into RL we often discover that the environment is at least as important as the exact algorithm. Not to say that all algorithms are suitable in all situations, but most of us will probably use an existing RL library and hope for the best.
 
 The environment on the other hand is where we’ll spend our time to match it to the task we want to achieve.
-Gym / Gymnasium (Open AI and from now Farama foundation) is currently the de-facto standard for Python environments. A lot of RL Python packages for agents / policies are dependent on Gym. As an example, ‘stable-baselines3’ (sb3 for short), is dependent on 'torch' but also on ‘gym’ (and on a few more packages).
+Gym/Gymnasium (Open AI and from now Farama foundation) is currently the de-facto standard for Python environments. A lot of RL Python packages for agents / policies are dependent on Gym. As an example, ‘stable-baselines3’ (sb3 for short), is dependent on 'torch' but also on ‘gym’ (and on a few more packages).
 
 According to Gym, an environment has the following functionality:
 
@@ -36,4 +36,4 @@ If you want to create a new environment to represent your challenge, you can con
 
 I want to add a side note that I find Gym environment suggested API and in fact the standard, to leave the taste of something missing. I find it horrifying that the existing RL packages are forced to make Gym to be their dependency. A better setting, for me, would be a loosely coupling between the package for the environment and the package for the RL agents / algorithms / training.
 
-At the moment Gym / Gymnasium is here to stay, and you must wrap your head around it, that this is the way it works. There are benefits. All RL packages adjust their API to Gym environments so you can quickly try them out on your favorite environment.
+At the moment Gym/Gymnasium is here to stay, and you must wrap your head around it, that this is the way it works. There are benefits. All RL packages adjust their API to Gym environments so you can quickly try them out on your favorite environment.
