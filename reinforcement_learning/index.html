@@ -254,7 +254,7 @@
   
     <li class="md-nav__item">
       <a href="../Gymnasium/gym/" class="md-nav__link">
-        Gym / Gymnasium
+        Gym/Gymnasium
       </a>
     </li>
   
@@ -394,8 +394,8 @@
 <h1 id="reinforcement-learning">Reinforcement Learning</h1>
 <p>We want to build software that automates tasks or acts on our behalf in various situations.
 This is nothing new. We have build software for some time now. We have came up with algorithms and engineering solutions.</p>
-<p>The future lies apparently with <strong>machine learning</strong>. We can build parts of our software systems in new ways. By <strong>training</strong> software from examples.
-So instead of figuring how to do stuff, we communicate to the software what we want, and the software is built automatically from this description.</p>
+<p>The future lies apparently with <strong>machine learning</strong>. We can build parts of our software systems in new ways; by <strong>training</strong> software from examples.
+So instead of figuring how to do stuff, we communicate to the software what we want, and the software is built automatically from this "description".</p>
 <p>For example for teaching software to distinguish between cats and dogs in images we provide examples of cats and of dogs and we use <strong>supervised learning</strong>. This is a machine learning technique with which a <strong>model</strong> slowly picks up the statistical hints from the labeled examples till it can fulfil the task of predicting correctly the labels on unseen examples, and hence we have achieved a software solution that can carry on from now in telling dogs from cats (and humans can enjoy and supervise while the machines do the hard work).</p>
 <p>Reinforcement learning is a similar concept. We want software that can play Chess against us, or control a self-driving car, and more. Note that here there are multiple steps. Not just a single decision cat or dog, but rather a series of <strong>actions</strong>. The software “wins” only if all its moves led to a victory. The car needs to get safely to the destination, following the traffic rules and in a reasonable time. Accelerating, slowing, changing the wheel orientation, all need to contribute for this complex task.</p>
 <p>To some degree we can employ again supervised learning. In each situation (state), we can label the desired action, for example by recording the actions of a human driver. We can then train a model to <strong>imitate</strong> the human by taking similar actions in similar situations. There are many recorded Chess games to learn from, we can try to train a model based on those games.
@@ -404,7 +404,7 @@ Can we do even better than our role model? Can we watch someone else, learn both
 <p>The environment produces <strong>observations</strong> and the actions of the agent are communicated to the environment. The state of the environment changes and the agent needs to learn to make smart decisions about its actions. The agent learns this time not from labels but rather by a <strong>reward mechanism</strong> that we provide to map a transition from one <strong>state</strong><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> in the environment to another state and its consequences.</p>
 <p>I'm bringing below an image taken from Wikipedia. In this image, we see yet another component in the setting. This is the <strong>interpreter</strong>.</p>
 <figure>
-  <img src="../images/Reinforcement_learning_diagram.svg.png" alt="Reinforcement learning diagram"/>
+  <img src="../images/Reinforcement_learning_diagram.svg.png" title="Reinforcement learning diagram"/>
   <figcaption>Reinforecement Learning Conceptual Model - Wikipedia</figcaption>
 </figure>
 

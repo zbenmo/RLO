@@ -246,7 +246,7 @@
   
     <li class="md-nav__item">
       <a href="../gym/" class="md-nav__link">
-        Gym / Gymnasium
+        Gym/Gymnasium
       </a>
     </li>
   
@@ -432,13 +432,20 @@ class UpDownLeftRight(gym.ActionWrapper):
 </code></pre>
 <p>Note, that you are very welcome to wrap your wrapped environment yet another time, and as many times are you need. A wrapped environment is still just an environment.</p>
 <p>There are (at least) two additional useful wrapper base classes. The one is <em>ObservationWrapper</em>.</p>
-<p>For example, you may wish to convert an RGB image into a monocolour image, as you believe it is simpler to learn from monocolour image. You can also build a <em>ObservationWrapper</em> to enrich the observation by introducing a short history to capture motion. Think of a single frame from an ATARI game, say a ball is heading towards you. Can you tell if it is going to the left or to the right? If you are given a few additional frames from the past you may see the direction.</p>
-<p>Wait, aren't we breaking the Markov Decision Process (<strong>MDP</strong>) assumption? And what is the <strong>MDP</strong> assumption to begin with?</p>
-<p>In order to simplify the world a little, we assume that at any given moment the state of the environment represents everything that we need to know in order to act. What happened before with the environment, our (the agent's) past mistakes, nothing matters.</p>
-<p>Wanted to use here "carpe diem", yet the expression is not appropriate as the future actually is very relevant. You do what is right now, yet of course you need to take into account the future and try to foresee it and what will be the consequences of your current action. Regrets are not helpful, but planning of some sort is the essence of RL.
-The environment, if indeed an <strong>MDP</strong>, behaves similarly, subject to randomness, when we return to the same state and take the same action. This is exactly what an agent needs to learn.</p>
-<p>So, back to the question, did we break the <strong>MDP</strong> assumption by introducing history? By changing the observation space, we've created a new <strong>MDP</strong>, for which there are more states. So still an <strong>MDP</strong> but a more detailed one. A thing that can help or harm the learning process. Yet to experiment.</p>
-<p>The other useful wrapper base class is <em>RewardWrapper</em>. Why to touch the reward? Maybe a reward of <em>+1</em> / <em>-1</em> at the end of the game is correct, but it takes the agent a lot of time to get to a win, and on the way getting no signal for progress is not helpful. We can add indication of good progress by giving some small rewards signals on the way. This will be under <strong>reward shaping</strong>. A very important concept. Another reason that we may want to change the reward is in order to scale / normalize it for the benefit of our neural network learning optimization.</p>
+<p>For example, you may wish to convert an RGB image into a monocolour image, as you believe it is simpler to learn from monocolour image. You can also build a <em>ObservationWrapper</em> to enrich the observation by introducing a short history to capture motion. Think of a single frame from an ATARI game, say a ball is heading towards you. Can you tell if it is going to the left or to the right? If you are given a few additional frames from the past you may see the direction (frame stacking).</p>
+<figure>
+  <img src="../../images/breakout - Made with Clipchamp.gif" title="ATARI Breakout"/>
+  <figcaption>ATARI Breakout</figcaption>
+</figure>
+
+<p>Wait, aren't we breaking the <strong>Markov property</strong> assumption? And what is the Markov property assumption to begin with?</p>
+<p>In order to simplify the world a little, we assume that at any given moment the state of the environment represents everything that we need to know in order to act. What happened before with the environment, our (the agent's) past mistakes, nothing matters.
+Wanted to use here "carpe diem", yet the expression is not appropriate as the future is very relevant. You do now what is right to do to the best of your policy, yet of course you need to take into account the future, and try to foresee it, and what will be the consequences of your current action. Regrets are not helpful, but planning of some sort is the essence of RL.
+The environment, if indeed adheres to the Markov property, behaves, subject to randomness, similarly when we return to the same state, and take the same action. This is exactly what an agent needs to learn.
+As we associate the reward mechanism with the environment, and we assume Markov property for the next state as well as for the reward, we can refer to the environment as a Markov Decision Process (<strong>MDP</strong>), which is exactly that, an environment with some dynamics that depends only on the current state, and the action the agent shall take. Note that the environment is often stochastic, and this does not contradic it being an <strong>MDP</strong>.</p>
+<p>So, back to the question, did we break the Markov property assumption by introducing history?</p>
+<p>By changing the observation space, we've created a new <strong>MDP</strong>, for which there are more states. So still an <strong>MDP</strong> but a more detailed one. That engineering intervention can potentially help or it might harm the learning process. Yet to experiment.</p>
+<p>The other useful wrapper base class is <em>RewardWrapper</em>. Why to touch the reward? Maybe a reward of <em>+1</em>/<em>-1</em> at the end of the game is correct, but it takes the agent a lot of time to get to a win, and on the way getting no signal for progress is not helpful. We can add indication of good progress by giving some small rewards signals on the way. This will be under <strong>reward shaping</strong>. A very important concept. Another reason that we may want to change the reward is in order to scale / normalize it for the benefit of our neural network learning optimization.</p>
 
 
 
