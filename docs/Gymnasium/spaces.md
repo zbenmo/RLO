@@ -4,8 +4,10 @@ Gym environment defines **observation space** and **action space**. Think of tho
 
 This makes a lot of sense as when one develops an agent to interact with that environment, the agent needs to be designed to expect observations of, for example images / pixels (ex. an ATARI game), or the output of some sensor, for example representing an angle. The actions of the agent may themselves be a discrete choice from a finite (small) set of possible values, as an example, yet it can also be a collection of values.
 
-    self.action_space = spaces.Discrete(3)
-    self.observation_space = spaces.Box(0, 1, shape=(2,))
+``` py
+self.action_space = spaces.Discrete(3)
+self.observation_space = spaces.Box(0, 1, shape=(2,))
+```
 
 In above example, the action space is 3 possible actions, {0, 1, 2}, standing for example for: {left, right, none}. It is up to the environment to translate the given integer number from the set to the matching action. The observation space in the example above is a vector of two entries, each taking a value from [0, 1]. You can imagine it as a location of a joystick in a 1 by 1 squared box.
 
@@ -23,18 +25,20 @@ For example, if the environment wish to provide images as observations, we may n
 
 A nice feature of spaces is that you can sample from them. Which means that you can play with an environment, even before having any agent. For example (taken from Gymnasium documentation):
 
-    import gymnasium as gym
-    env = gym.make("LunarLander-v2", render_mode="human")
-    observation, info = env.reset()
+``` py
+import gymnasium as gym
+env = gym.make("LunarLander-v2", render_mode="human")
+observation, info = env.reset()
 
-    for _ in range(1000):
-        action = env.action_space.sample()  # agent policy that uses the observation and info
-        observation, reward, terminated, truncated, info = env.step(action)
+for _ in range(1000):
+    action = env.action_space.sample()  # agent policy that uses the observation and info
+    observation, reward, terminated, truncated, info = env.step(action)
 
-        if terminated or truncated:
-            observation, info = env.reset()
+    if terminated or truncated:
+        observation, info = env.reset()
 
-    env.close()
+env.close()
+```
 
 Note that sampling from the observation space may return "images" that should never actually be returned from the environment (ex. complete random noise). That is because the observation space is wider than the actual distribution of values the agent will actually see. The action space may also be wider than the legal actions. If you stample on such an issue, you may want to read about [action masking](../../concepts/action_masking).
 
