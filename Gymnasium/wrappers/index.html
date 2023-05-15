@@ -12,7 +12,7 @@
         <link rel="prev" href="../creating_a_new_environment/">
       
       
-        <link rel="next" href="../../concepts/action_masking/">
+        <link rel="next" href="../../PettingZoo/pettingzoo/">
       
       <link rel="icon" href="../../images/favicon-32x32.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.15">
@@ -296,9 +296,54 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Wrappers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Wrappers
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#actionwrapper" class="md-nav__link">
+    ActionWrapper
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observationwrapper" class="md-nav__link">
+    ObservationWrapper
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rewardwrapper" class="md-nav__link">
+    RewardWrapper
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -329,12 +374,75 @@
       
       
         <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
-          concepts
+          PettingZoo
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          PettingZoo
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PettingZoo/pettingzoo/" class="md-nav__link">
+        PettingZoo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PettingZoo/wrapping_pz_into_gym/" class="md-nav__link">
+        Wrapping a PettingZoo into a Gymnasium one
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          concepts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
           concepts
         </label>
@@ -380,6 +488,35 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#actionwrapper" class="md-nav__link">
+    ActionWrapper
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observationwrapper" class="md-nav__link">
+    ObservationWrapper
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rewardwrapper" class="md-nav__link">
+    RewardWrapper
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -395,44 +532,49 @@
 
 <h1 id="wrappers">Wrappers</h1>
 <p>A wrapper in Gym/Gymnasium is just an environment that delegates its calls to another environment, potentially doing first some adjustments.</p>
-<p>Why is it a good idea to introduce wrappers and when will we want to use wrappers?<br />
-The agents developed against Gym environments in mind, expect a specific interface. That is in particular the 'step' function. One is expected to pass as an argument to the 'step' function an action from the <strong>action space</strong> and one expects to receive in return an observation (the next observation) from the <strong>observation space</strong>. The <strong>reward</strong> that is returned from the 'step' function determines also if the agent is able to learn the desired behaviour, and is not less important from the observation and the learning algorithm itself.</p>
-<p>What do you do when you want your agent to think of the problem a little different. What do you do if you want the action space to be a bit different? I'll give an example. The environment expects a target destination on an '8x8' board game. You train an agent with your preferred RL library, and a suitable method, yet the agent seems to learn very slow. Let's assume that the agent avoids illegal moves, for example, by taking into account <a href="../../concepts/action_masking">action masking</a>.</p>
-<p>Still the "learning" is slow. You brainstorm with friends and they point that your (agent) piece can only move {up, left, down, right}. You hypnotise that if the action space is changed to those four possible actions, the agent will learn faster. To try you quickly wrap the original environment, with an environment that declares its ‘action_space’ with above four directions, and translates this action into the target square. That's it. You can train an agent with the "new" environment and see if the learning is faster.</p>
-<p>While you can create a new environment to wrap the old environment, or also to create a new general wrapper based on <em>gym.Wrapper</em>, in above case you can actually base your wrapper on <em>gym.ActionWrapper</em>. If you base your wrapper on <em>gym.ActionWrapper</em>, you only need to have the new <em>action_space</em> available and to implement a function called <em>action</em> that takes an action from the new action space (the one of the wrapper), and return the matching action of the wrapped environment. For example, something I did in <a href="https://github.com/zbenmo/qwertyenv">qwertyenv</a>.</p>
-<pre><code class="language-py">import gym
-from typing import Tuple, Callable
-import numpy as np
-
-
-class UpDownLeftRight(gym.ActionWrapper):
-  &quot;&quot;&quot;
-  A gym environment wrapper to enable U/D/L/R action space when the wrapped environment
-  actually expects a destination in cartesian coordinates.
-  &quot;&quot;&quot;
-
-  def __init__(self, env: gym.Env,
-               get_current_location: Callable[[], Tuple[int, int]]):
-
-    super().__init__(env)
-    self.get_current_location = get_current_location
-
-    self.action_space = gym.spaces.Discrete(4)
-
-    self.udlr_action_to_board_action = {
-      0: (0, -1), # up
-      1: (0, +1), # down
-      2: (-1, 0), # left
-      3: (+1, 0), # right
-    }
-
-  def action(self, action: int) -&gt; Tuple[int, int]:
-    current_location = self.get_current_location()
-    return tuple(np.add(current_location, self.udlr_action_to_board_action[action]))
-</code></pre>
+<p>Why is it a good idea to introduce wrappers and when will we want to use wrappers?</p>
+<p>The agents developed against Gym environments in mind, expect a specific interface. That is in particular the 'step' function. One is expected to pass as an argument to the 'step' function an action from the <strong>action space</strong> and one expects to receive in return an observation (the next observation) from the <strong>observation space</strong>. The <strong>reward</strong> that is returned from the 'step' function determines also if the agent is able to learn the desired behaviour, and is not less important from the observation and the learning algorithm itself.</p>
+<p>What do you do when you want your agent to think of the problem a little different. What do you do if you want the action space to be a bit different?</p>
+<p>I'll give an example. The environment expects a target destination on an '8x8' board game. You train an agent with your preferred RL library, and a suitable method, yet the agent seems to learn very slow. Let's assume that the agent avoids illegal moves, for example, by taking into account <a href="../../concepts/action_masking">action masking</a>.
+Still the "learning" is slow.<br />
+You brainstorm with friends and they point that your (agent) piece can only move {up, left, down, right}. You hypnotise that if the action space is changed to those four possible actions, the agent shall learn faster. To try, you quickly wrap the original environment, with an environment that declares its ‘action_space’ with above four (discrete) directions, and translates this action into the target square. You can now train an agent with the "new" environment and see if the learning is faster.</p>
+<h2 id="actionwrapper">ActionWrapper</h2>
+<p>While you can create a new environment to wrap the old environment, or also to create your custom wrapper based on the class <em>gym.Wrapper</em>, in above case you can actually base your wrapper on the class <em>gym.ActionWrapper</em>. If you base your wrapper on <em>ActionWrapper</em>, you only need to have the new <em>action_space</em> available, and to implement a function called <em>action</em>, that takes an action from the new action space (the one of the wrapper), and returns the matching action of the wrapped environment. For example, something I did in <a href="https://github.com/zbenmo/qwertyenv">qwertyenv</a>.</p>
+<div class="language-py highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">gym</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Callable</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">class</span> <span class="nc">UpDownLeftRight</span><span class="p">(</span><span class="n">gym</span><span class="o">.</span><span class="n">ActionWrapper</span><span class="p">):</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="sd">  A gym environment wrapper to enable U/D/L/R action space when the wrapped environment</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="sd">  actually expects a destination in cartesian coordinates.</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="sd">  &quot;&quot;&quot;</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">:</span> <span class="n">gym</span><span class="o">.</span><span class="n">Env</span><span class="p">,</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>               <span class="n">get_current_location</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]):</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">get_current_location</span> <span class="o">=</span> <span class="n">get_current_location</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">action_space</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">Discrete</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">udlr_action_to_board_action</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>      <span class="mi">0</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># up</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>      <span class="mi">1</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># down</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>      <span class="mi">2</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="c1"># left</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>      <span class="mi">3</span><span class="p">:</span> <span class="p">(</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="c1"># right</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="p">}</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>  <span class="k">def</span> <span class="nf">action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="n">current_location</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_current_location</span><span class="p">()</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">current_location</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">udlr_action_to_board_action</span><span class="p">[</span><span class="n">action</span><span class="p">]))</span>
+</span></code></pre></div>
 <p>Note, that you are very welcome to wrap your wrapped environment yet another time, and as many times are you need. A wrapped environment is still just an environment.</p>
-<p>There are (at least) two additional useful wrapper base classes. The one is <em>ObservationWrapper</em>.</p>
-<p>For example, you may wish to convert an RGB image into a monocolour image, as you believe it is simpler to learn from monocolour image. You can also build a <em>ObservationWrapper</em> to enrich the observation by introducing a short history to capture motion. Think of a single frame from an ATARI game, say a ball is heading towards you. Can you tell if it is going to the left or to the right? If you are given a few additional frames from the past you may see the direction (frame stacking).</p>
+<h2 id="observationwrapper">ObservationWrapper</h2>
+<p>There are (at least) two additional useful wrapper base classes. The one is <em>ObservationWrapper</em>.
+For example, you may wish to convert an RGB image into a monocolour image, as you believe it is simpler to learn from monocolour image.</p>
+<p>You can also build a <em>ObservationWrapper</em> to enrich the observation by introducing a short history to capture motion. Think of a single frame from an ATARI game, say a ball is heading towards you. Can you tell if it is going to the left or to the right? If you are given a few additional frames from the past you may see the direction (frame stacking).</p>
 <figure>
   <img src="../../images/breakout - Made with Clipchamp.gif" title="ATARI Breakout"/>
   <figcaption>ATARI Breakout</figcaption>
@@ -440,12 +582,13 @@ class UpDownLeftRight(gym.ActionWrapper):
 
 <p>Wait, aren't we breaking the <strong>Markov property</strong> assumption? And what is the Markov property assumption to begin with?</p>
 <p>In order to simplify the world a little, we assume that at any given moment the state of the environment represents everything that we need to know in order to act. What happened before with the environment, our (the agent's) past mistakes, nothing matters.
-Wanted to use here "carpe diem", yet the expression is not appropriate as the future is very relevant. You do now what is right to do to the best of your policy, yet of course you need to take into account the future, and try to foresee it, and what will be the consequences of your current action. Regrets are not helpful, but planning of some sort is the essence of RL.
-The environment, if indeed adheres to the Markov property, behaves, subject to randomness, similarly when we return to the same state, and take the same action. This is exactly what an agent needs to learn.
+Wanted to use here "carpe diem", yet the expression is not appropriate as the future is very relevant. You do now what is right to do to the best of your policy, yet of course you need to take into account the future, and try to foresee it, and what will be the consequences of your current action. Regrets are not helpful, but planning of some sort is the essence of RL.</p>
+<p>The environment, if indeed adheres to the Markov property, behaves, subject to randomness, similarly when we return to the same state, and take the same action. This is exactly what an agent needs to learn.
 As we associate the reward mechanism with the environment, and we assume Markov property for the next state as well as for the reward, we can refer to the environment as a Markov Decision Process (<strong>MDP</strong>), which is exactly that, an environment with some dynamics that depends only on the current state, and the action the agent shall take. Note that the environment is often stochastic, and this does not contradic it being an <strong>MDP</strong>.</p>
 <p>So, back to the question, did we break the Markov property assumption by introducing history?</p>
 <p>By changing the observation space, we've created a new <strong>MDP</strong>, for which there are more states. So still an <strong>MDP</strong> but a more detailed one. That engineering intervention can potentially help or it might harm the learning process. Yet to experiment.</p>
-<p>The other useful wrapper base class is <em>RewardWrapper</em>. Why to touch the reward? Maybe a reward of <em>+1</em>/<em>-1</em> at the end of the game is correct, but it takes the agent a lot of time to get to a win, and on the way getting no signal for progress is not helpful. We can add indication of good progress by giving some small rewards signals on the way. This will be under <strong>reward shaping</strong>. A very important concept. Another reason that we may want to change the reward is in order to scale / normalize it for the benefit of our neural network learning optimization.</p>
+<h2 id="rewardwrapper">RewardWrapper</h2>
+<p>A third useful base class wrapper is <em>RewardWrapper</em>. Why to touch the reward? Maybe a reward of <em>+1</em>/<em>-1</em> at the end of the game is correct, but it takes the agent a lot of time to get to a win, and on the way getting no signal for progress is not helpful. We can add indication of good progress by giving some small rewards signals on the way. This shall be under <strong>reward shaping</strong>, which is a very important concept. Another reason that we may want to change the reward is in order to scale / normalize it for the benefit of our neural network learning optimization.</p>
 
 
 

@@ -329,12 +329,75 @@
       
       
         <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
-          concepts
+          PettingZoo
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          PettingZoo
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PettingZoo/pettingzoo/" class="md-nav__link">
+        PettingZoo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PettingZoo/wrapping_pz_into_gym/" class="md-nav__link">
+        Wrapping a PettingZoo into a Gymnasium one
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          concepts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
           concepts
         </label>
@@ -396,9 +459,9 @@
 <h1 id="spaces">Spaces</h1>
 <p>Gym environment defines <strong>observation space</strong> and <strong>action space</strong>. Think of those as the “types” of the input and the output for the agent’s decision. The spaces also communicate the range or set of possible values. </p>
 <p>This makes a lot of sense as when one develops an agent to interact with that environment, the agent needs to be designed to expect observations of, for example images / pixels (ex. an ATARI game), or the output of some sensor, for example representing an angle. The actions of the agent may themselves be a discrete choice from a finite (small) set of possible values, as an example, yet it can also be a collection of values.</p>
-<pre><code>self.action_space = spaces.Discrete(3)
+<div class="language-text highlight"><pre><span></span><code>self.action_space = spaces.Discrete(3)
 self.observation_space = spaces.Box(0, 1, shape=(2,))
-</code></pre>
+</code></pre></div>
 <p>In above example, the action space is 3 possible actions, {0, 1, 2}, standing for example for: {left, right, none}. It is up to the environment to translate the given integer number from the set to the matching action. The observation space in the example above is a vector of two entries, each taking a value from [0, 1]. You can imagine it as a location of a joystick in a 1 by 1 squared box.</p>
 <p>The reward is a single 'float' number. ‘truncated’ and ‘terminated’ (or ‘done’) are of type 'bool'. There is also a general purpose output from the ‘step’ function (and also from 'reset'), that is referred to as ‘info’ and is a dictionary with whatever values the environment wants to communicate to the outside world in addition to the fixed contract given by the observation space and the action space.</p>
 <p>In the example of a Chess game, we may want to communicate to the agent where are its pieces, where are the other player’s pieces, and in this way unify the cases when the player is the white and when it is actually the black. In Chess we may also want to communicate if specific moves, such as castling, are still valid.</p>
@@ -407,8 +470,8 @@ self.observation_space = spaces.Box(0, 1, shape=(2,))
 <p>The environment should define its observation space and its action space based on its needs, however, once defined, we need to find RL algorithm implementation that supports the required observation and action spaces. </p>
 <p>For example, if the environment wish to provide images as observations, we may need an RL implementation that have maybe a CNN. If the action space is discrete we may have the output to be a fixed size layer with softmax activation. <em>Dict</em> observations may require some software construct that shall combine those in some clever way to the inputs of a NN for example.</p>
 <p>A nice feature of spaces is that you can sample from them. Which means that you can play with an environment, even before having any agent. For example (taken from Gymnasium documentation):</p>
-<pre><code>import gymnasium as gym
-env = gym.make("LunarLander-v2", render_mode="human")
+<div class="language-text highlight"><pre><span></span><code>import gymnasium as gym
+env = gym.make(&quot;LunarLander-v2&quot;, render_mode=&quot;human&quot;)
 observation, info = env.reset()
 
 for _ in range(1000):
@@ -419,7 +482,7 @@ for _ in range(1000):
         observation, info = env.reset()
 
 env.close()
-</code></pre>
+</code></pre></div>
 <p>Note that sampling from the observation space may return "images" that should never actually be returned from the environment (ex. complete random noise). That is because the observation space is wider than the actual distribution of values the agent will actually see. The action space may also be wider than the legal actions. If you stample on such an issue, you may want to read about <a href="../../concepts/action_masking">action masking</a>.</p>
 <p>Another item to make our lives even a bit more interesting, is for example a game like Contract Bridge where you have multiple stages. In Contract Bridge we have the bidding, and the rest of the game. The observation space as well as the action space of an environment are fixed. It is up to you to come up with a setting that can handle all the stages. For example by having an agent for stage, each interacting with one environment dedicated for that stage, or by concatenating somehow the action apaces, and adding in the observation some hint in which stage we are. Or also as mentioned above by using <a href="../../concepts/action_masking">action masking</a>.</p>
 <p>As far as I know, most environments do not allow for setting their state explicitly, but rather they either start from the same point (ex. a Chess game), or start from a random state (ex. a Contract Bridge cards shuffle). If relevant, you may hack your environment to start from a specific state, this would be just software engineering.</p>
